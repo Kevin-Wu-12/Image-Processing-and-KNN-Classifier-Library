@@ -3,6 +3,15 @@ A Python library for image processing and classification, built primarily with n
 Features include customizable image manipulations (grayscale, negation, edge detection) and a K-Nearest Neighbors (KNN) classifier for image recognition, 
 utilizing NumPy and PIL for performance optimization.
 
+### Contributions
+This project focuses on the implementation of:
+- RGBImage class for handling pixel-based image manipulation.
+- ImageProcessingTemplate and derived classes for standard and premium image processing.
+- ImageKNNClassifier for KNN-based image classification.
+
+The `image_viewer.py` file was provided as part of the starter code and is not part of this implementation.
+
+
 ## Running Tests
 This project uses doctests for validating functionality. To run the doctests:
 
@@ -36,6 +45,6 @@ This Python library provides a modular framework for advanced image processing a
 ## **Installation**
 Clone the repository and ensure you have the following dependencies installed:
 ```bash
-git clone https://github.com/yourusername/knn-image-library.git
-cd knn-image-library
+git clone https://kevin-wu-12.github.io/Image-Processing-and-KNN-Classifier-Library/
+cd Image-Processing-and-KNN-Classifier-Library
 pip install -r requirements.txt
