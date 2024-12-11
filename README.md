@@ -8,7 +8,7 @@ This project uses doctests for validating functionality. To run the doctests:
 
 ```bash
 python -m doctest -v ImageProcessingLibrary.py
-
+```
 # **Image Processing and KNN Classifier Library**
 
 ## **Overview**
