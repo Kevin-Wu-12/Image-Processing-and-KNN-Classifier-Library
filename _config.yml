@@ -1,1 +1,9 @@
 theme: minima
+title: Image Processing and KNN Classifier Library
+description: A Python library for advanced image processing and KNN-based image classification.
+
+header_pages:
+  - index.md
+  - usage.md
+  - installation.md
+  - api_reference.md
