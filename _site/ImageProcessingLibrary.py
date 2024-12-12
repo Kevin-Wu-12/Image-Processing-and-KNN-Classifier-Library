@@ -1,8 +1,6 @@
 """
 DSC 20 Project
 Name(s): Nathan Dang, Kevin Wu
-PID(s):  A17906042, A17886439
-Sources: None
 """
 
 import numpy as np
