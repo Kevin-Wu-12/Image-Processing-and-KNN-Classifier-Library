@@ -13,7 +13,7 @@ A Python library for image processing and classification, built primarily with n
 6. [Disclaimer](#disclaimer)
 
 ## **Overview**
-This Python library provides a modular framework for advanced image processing and classification using a K-Nearest Neighbors (KNN) approach. It includes classes and methods for manipulating RGB images, implementing standard and premium image processing techniques, and classifying images based on pixel similarity. G oodf
+This Python library provides a modular framework for advanced image processing and classification using a K-Nearest Neighbors (KNN) approach. It includes classes and methods for manipulating RGB images, implementing standard and premium image processing techniques, and classifying images based on pixel similarity.
 
 
 ## **Contributions**
@@ -31,18 +31,11 @@ This project uses doctests for validating functionality. To run the doctests:
 ```bash
 python -m doctest -v ImageProcessingLibrary.py
 ```
-# **Image Processing and KNN Classifier Library**
-
-## **Overview**
-This Python library provides a modular framework for advanced image processing and classification using a K-Nearest Neighbors (KNN) approach. It includes classes and methods for manipulating RGB images, implementing standard and premium image processing techniques, and classifying images based on pixel similarity.
 
 ### Disclaimer
 This library is a personal implementation primarily built using native Python. While it emphasizes simplicity, clarity, and educational value, it may not be as optimized or fast as other specialized libraries like OpenCV or scikit-image. It is best suited for learning purposes or smaller-scale applications.
 
-# DSC 20 Project Documentation
-
-## Project Overview
-This project implements an image processing library and a K-Nearest Neighbors (KNN) classifier for images. It provides the ability to manipulate and classify images based on various operations and techniques.
+# Project Documentation
 
 ---
 
