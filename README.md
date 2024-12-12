@@ -37,8 +37,6 @@ This library is a personal implementation primarily built using native Python. W
 
 # Project Documentation
 
----
-
 ## Features
 
 ### 1. RGB Image Manipulation
@@ -49,6 +47,7 @@ This library is a personal implementation primarily built using native Python. W
     - `get_pixel()`: Retrieve the RGB value of a specific pixel.
     - `set_pixel()`: Modify the RGB value of a pixel.
     - `size()`: Returns the dimensions of the image.
+    - `copy()`': Returns a copy of this RGBImage object
 
 ### 2. Image Processing
 - **StandardImageProcessing**:
@@ -56,7 +55,7 @@ This library is a personal implementation primarily built using native Python. W
     - `negate`: Replace specific colors with a background.
     - `grayscale`: Overlay one image on another at specified positions.
     - `rotate_180`: Highlight edges in an image.
-    - `adjust_brightness`: Highlight edges in an image.
+    - `adjust_brightness`: Adjust brightness of an image.
     - `blur`: Highlight edges in an image.
 
 - **PremiumImageProcessing**:
@@ -82,54 +81,6 @@ This library is a personal implementation primarily built using native Python. W
 A simple K-Nearest Neighbors (KNN) classifier for image data, supporting Euclidean distance-based classification.
 
 ---
-
-## Key Methods
-
-### `__init__(self, k_neighbors)`
-Initializes the classifier.
-
-- **Parameters**:
-  - `k_neighbors` (int): Number of neighbors to consider for classification.
-
----
-
-### `fit(self, data)`
-Trains the classifier using labeled image data.
-
-- **Parameters**:
-  - `data` (list of tuples): Each tuple contains an `RGBImage` instance and its associated label.
-
-- **Raises**:
-  - `ValueError`: If the dataset has fewer elements than `k_neighbors`.
-
----
-
-### `predict(self, image)`
-Predicts the label of an input image based on its nearest neighbors.
-
-- **Parameters**:
-  - `image` (`RGBImage`): The image to classify.
-
-- **Returns**:
-  - `str`: Predicted label.
-
-- **Raises**:
-  - `ValueError`: If the classifier has not been trained.
-
----
-
-### `distance(self, image1, image2)`
-Calculates the Euclidean distance between two images.
-
-- **Parameters**:
-  - `image1`, `image2` (`RGBImage`): The two images to compare.
-
-- **Returns**:
-  - `float`: The computed Euclidean distance.
-
-- **Raises**:
-  - `TypeError`: If inputs are not `RGBImage` instances.
-  - `ValueError`: If the dimensions of the two images do not match.
 
 
 ## **Installation**
