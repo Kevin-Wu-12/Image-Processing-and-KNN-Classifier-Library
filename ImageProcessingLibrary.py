@@ -105,6 +105,7 @@ class RGBImage:
         >>> img.size()
         (1, 2)
         """
+
         return (self.num_rows, self.num_cols)
 
     def get_pixels(self):
@@ -129,7 +130,6 @@ class RGBImage:
         True
         """
         
-        
         return [[[pix_val for pix_val in col] for col in row] \
                     for row in self.pixels]
 
@@ -148,6 +148,7 @@ class RGBImage:
         >>> id(img_copy) != id(img)
         True
         """
+
         return RGBImage(self.get_pixels())
 
     def get_pixel(self, row, col):
@@ -174,6 +175,7 @@ class RGBImage:
         >>> img.get_pixel(0, 0)
         (255, 255, 255)
         """
+
         if not isinstance(row, int) or not isinstance(col, int):
             raise TypeError()
         if not row < self.num_rows or not col < self.num_cols:
@@ -207,8 +209,8 @@ class RGBImage:
         >>> img.set_pixel(0, 1, (100, 200, -1))
         >>> img.pixels
         [[[255, 0, 0], [100, 200, 0]]]
-
         """
+
         if not all(color <= 255 for color in new_color):
             raise ValueError()
         if not isinstance(row, int) or not isinstance(col, int):
@@ -243,7 +245,7 @@ class ImageProcessingTemplate:
         >>> img_proc.cost
         0
         """
-        # YOUR CODE GOES HERE #
+        
         self.cost = 0
 
     def get_cost(self):
@@ -256,6 +258,7 @@ class ImageProcessingTemplate:
         >>> img_proc.get_cost()
         50
         """
+
         return self.cost
 
 
@@ -309,8 +312,8 @@ class ImageProcessingTemplate:
         >>> img_gray.pixels == img_exp.pixels # Check grayscale output
         True
         >>> img_save_helper('img/out/test_image_32x32_gray.png', img_gray)
-
         """
+
         gray = [[[sum(val)//3]*3 for val in vlist] for vlist in image.pixels]
 
         
@@ -330,6 +333,7 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/test_image_32x32_rotate.png', img_rotate)
         """
+
         rotate = [val[::-1] for val in image.pixels[::-1]]
 
         
@@ -348,8 +352,8 @@ class ImageProcessingTemplate:
         >>> img_proc = ImageProcessingTemplate()
         >>> img_proc.get_average_brightness(img)
         127
-
         """
+
         total_brightness = sum(
         sum(sum(pixel) // 3 for pixel in row) for row in image.pixels
         )
@@ -369,7 +373,6 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/test_image_32x32_adjusted.png', img_adjust)
         """
-        
 
         brightness = map(lambda x: [[val + intensity for val in vlst ]    
             for vlst in x], image.pixels) 
@@ -438,7 +441,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         super().__init__()
         self.cost = 0
         self.coupon_total = 0
-        
 
     def negate(self, image):
         """
@@ -459,6 +461,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_negate.pixels == img_exp.pixels # Check negate output
         True
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -469,8 +472,8 @@ class StandardImageProcessing(ImageProcessingTemplate):
     def grayscale(self, image):
         """
         Returns a grayscale copy of the given image
-
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -482,6 +485,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         """
         Returns a rotated version of the given image
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -493,6 +497,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         """
         Returns a new image with adjusted brightness level
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -504,6 +509,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         """
         Returns a new image with the pixels blurred
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -525,6 +531,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_proc.get_cost()
         0
         """
+
         if not isinstance(amount, int):
             raise TypeError()
         elif amount <= 0:
@@ -547,8 +554,8 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         >>> img_proc = PremiumImageProcessing()
         >>> img_proc.get_cost()
         50
-
         """
+
         super().__init__()
         self.cost = 50
 
@@ -568,6 +575,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/square_32x32_chroma.png', img_chroma)
         """
+
         if not isinstance(chroma_image, RGBImage):
             raise TypeError()
         if not isinstance(background_image, RGBImage):
@@ -614,6 +622,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/test_image_32x32_sticker.png', img_combined)
         """
+
         rows = sticker_image.num_rows
         cols = sticker_image.num_cols
 
@@ -666,6 +675,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/test_image_32x32_edge.png', img_edge)
         """
+
         rows = image.num_rows
         cols = image.num_cols
 
@@ -711,6 +721,7 @@ class ImageKNNClassifier:
     """
     Represents a simple KNNClassifier
     """
+
     def __init__(self, k_neighbors):
         """
         Creates a new KNN classifier object
@@ -739,8 +750,8 @@ class ImageKNNClassifier:
         Traceback (most recent call last):
         ...
         TypeError: Both inputs must be instances of RGBImage
-
         """
+
         if not isinstance(image1, RGBImage) or not isinstance(image2, RGBImage):
             raise TypeError("Both inputs must be instances of RGBImage")
 
@@ -773,6 +784,7 @@ class ImageKNNClassifier:
         >>> knn.vote(['aaaa', 'label2', 'label1'])
         'aaaa'
         """
+
         mostf = candidates[0]
         count = 0
         for label in candidates:
@@ -814,6 +826,7 @@ def knn_tests(test_img_path):
     'nighttime'
 
     """
+
     # Read all of the sub-folder names in the knn_data folder
     # These will be treated as labels
     path = 'knn_data'
@@ -841,4 +854,5 @@ def knn_tests(test_img_path):
 
     # Return the KNN's prediction
     predicted_label = knn.predict(test_img)
+
     return predicted_label
