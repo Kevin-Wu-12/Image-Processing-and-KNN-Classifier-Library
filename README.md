@@ -25,6 +25,18 @@ This project focuses on the implementation of:
 The `image_viewer.py` file was provided as part of the starter code for this project. It is used for testing and demonstrating the functionality of the implemented library but was not
 written by me.
 
+### Prerequisites
+- Python 3.x
+- Required Libraries: `numpy`, `PIL`, `os`
+
+## **Installation**
+Clone the repository and ensure you have the following dependencies installed:
+```bash
+git clone https://kevin-wu-12.github.io/Image-Processing-and-KNN-Classifier-Library/
+cd Image-Processing-and-KNN-Classifier-Library
+pip install -r requirements.txt
+```
+
 ## Running Tests
 This project uses doctests for validating functionality. To run the doctests:
 
@@ -35,6 +47,22 @@ python -m doctest -v ImageProcessingLibrary.py
 ### Disclaimer
 This library is a personal implementation primarily built using native Python. While it emphasizes simplicity, clarity, and educational value, it may not be as optimized or fast as other specialized libraries like OpenCV or scikit-image. It is best suited for learning purposes or smaller-scale applications.
 
+## Examples
+
+Explore the following example scripts to see the library in action:
+
+1. [Grayscale Example](examples/grayscale_example.py): Convert an image to grayscale.
+2. [KNN Classifier Example](examples/knn_classifier_example.py): Classify images using K-Nearest Neighbors.
+
+### Sample Images
+To use these examples, download the repository and navigate to the `sample_images/` folder for input images.
+
+### Run an Example
+Run the examples by navigating to the `examples/` folder and executing the script:
+
+```bash
+python grayscale_example.py
+```
 # Project Documentation
 
 ## Features
@@ -438,15 +466,3 @@ Runs K-Nearest Neighbors (KNN) classification on an image, predicting its label 
 **Exceptions Raised:**  
 - `FileNotFoundError`: If the provided `test_img_path` does not exist or cannot be read.  
 - `ValueError`: If the dataset folder (`knn_data`) is empty or improperly structured.
-
-### Prerequisites
-- Python 3.x
-- Required Libraries: `numpy`, `PIL`, `os`
-
-## **Installation**
-Clone the repository and ensure you have the following dependencies installed:
-```bash
-git clone https://kevin-wu-12.github.io/Image-Processing-and-KNN-Classifier-Library/
-cd Image-Processing-and-KNN-Classifier-Library
-pip install -r requirements.txt
-
