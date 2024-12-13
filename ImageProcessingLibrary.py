@@ -56,7 +56,7 @@ class RGBImage:
         >>> RGBImage(pixels)
         Traceback (most recent call last):
         ...
-        TypeError
+        TypeError: Not a rectangular 3D list
 
         # Test instance variables
         >>> pixels = [
@@ -72,7 +72,7 @@ class RGBImage:
         >>> RGBImage([[[255, 255, 256], [0, 0, 0]]])
         Traceback (most recent call last):
         ...
-        ValueError:s Pixel values must be in the range 0-255
+        ValueError: Pixel values must be in the range 0-255
         """
         
         if not isinstance(pixels, list) or not pixels:
@@ -82,7 +82,7 @@ class RGBImage:
 
         for row in pixels:
             if not isinstance(row, list) or not row:
-                raise TypeError()
+                raise TypeError("Not a rectangular 3D list")
             for row in pixels:
                 for pixel in row:
                     if not all(0 <= val <= 255 for val in pixel):
@@ -200,7 +200,7 @@ class RGBImage:
         >>> img.set_pixel(0, 0, (256, 0, 0))
         Traceback (most recent call last):
         ...
-        ValueError
+        ValueError: Color values exceed 255
 
         # Check that the R/G/B value with negative is unchanged
         >>> img.set_pixel(0, 0, (-1, 0, 0))
@@ -212,11 +212,11 @@ class RGBImage:
         """
 
         if not all(color <= 255 for color in new_color):
-            raise ValueError()
+            raise ValueError('Color values exceed 255')
         if not isinstance(row, int) or not isinstance(col, int):
-            raise TypeError()
+            raise TypeError('Row or col not an integer')
         if not row < self.num_rows or not col < self.num_cols:
-            raise ValueError()
+            raise ValueError('Rows or cols out of range')
 
 
         colors = list(self.get_pixel(row, col))
