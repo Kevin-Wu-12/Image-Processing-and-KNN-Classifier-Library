@@ -71,17 +71,299 @@ This library is a personal implementation primarily built using native Python. W
     - `fit()`: Train the classifier on labeled image data.
     - `predict()`: Classify an image based on its nearest neighbors.
     - `distance()`: Compute the Euclidean distance between two images.
+    
+# Documentation for Image Processing and KNN Classifier
+
+## `img_read_helper(path)`
+**Purpose**:  
+Reads an image file from the given path, converts it into an RGB format, and creates an `RGBImage` object.
+
+**Inputs**:  
+- `path` (str): The file path to the image.
+
+**Outputs**:  
+- An instance of `RGBImage` created from the image.
+
+**Exceptions Raised**:  
+- Exceptions related to invalid file paths or unreadable image files.
+
+**Remarks**:  
+- The image is always converted to RGB format regardless of its original mode.
+
+---
+
+## `img_save_helper(path, image)`
+**Purpose**:  
+Saves an `RGBImage` instance as an image file at the specified path.
+
+**Inputs**:  
+- `path` (str): The file path where the image will be saved.
+- `image` (`RGBImage`): An instance of the `RGBImage` class to save.
+
+**Outputs**:  
+- None.
+
+**Exceptions Raised**:  
+- None.
+
+---
+
+## Class `RGBImage`
+
+### `__init__(pixels)`
+**Purpose**:  
+Initializes an `RGBImage` instance with a 3D list of pixel values.
+
+**Inputs**:  
+- `pixels` (list): A 3D list where each element represents the RGB values of a pixel.
+
+**Outputs**:  
+- None.
+
+**Exceptions Raised**:  
+- `TypeError`: If the input is not a rectangular 3D list.
+- `ValueError`: If pixel values are not integers in the range [0, 255].
+
+---
+
+### `size()`
+**Purpose**:  
+Returns the dimensions of the image.
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- A tuple `(num_rows, num_cols)` representing the number of rows and columns in the image.
+
+---
+
+### `get_pixels()`
+**Purpose**:  
+Returns a deep copy of the image's pixel data.
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- A 3D list of the image's pixel data.
+
+---
+
+### `copy()`
+**Purpose**:  
+Returns a copy of the `RGBImage` instance
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- A `RGBImage` instance
+
+**Exceptions Raised**:  
+- None.
+
+---
+
+### `get_pixel()`
+**Purpose**:  
+Returns the (R, G, B) value at the given positio
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- A 3D list of the image's pixel data.
+
+---
+
+### `set_pixel(row, col, new_color)`
+**Purpose**:  
+Updates the RGB value of a specific pixel.
+
+**Inputs**:  
+- `row` (int): The row index.
+- `col` (int): The column index.
+- `new_color` (tuple): A tuple `(R, G, B)` with the new pixel values. Negative values are ignored.
+
+**Outputs**:  
+- None.
+
+**Exceptions Raised**:  
+- `TypeError`: If `row` or `col` is not an integer.
+- `ValueError`: If the RGB values in `new_color` exceed the range [0, 255].
+
+---
+
+## Class `ImageProcessingTemplate`
+
+### `__init__()`
+**Purpose**:  
+Initializes an `ImageProcessingTemplate` instance with the cost of 0.
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- None.
+
+---
+
+### `cost()`
+**Purpose**:  
+Returns the total cost.
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- Current incurred cost.
+
+---
+
+### `negate(image)`
+**Purpose**:  
+Creates a new image with the RGB values negated (inverted).
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+
+**Outputs**:  
+- A new `RGBImage` with negated pixel values.
+
+---
+
+### `grayscale(image)`
+**Purpose**:  
+Creates a grayscale version of the given image.
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+
+**Outputs**:  
+- A new `RGBImage` in grayscale.
+
+---
+
+### `rotate_180(image)`
+**Purpose**:  
+Creates a new image rotated 180 degrees.
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+
+**Outputs**:  
+- A new `RGBImage` rotated by 180 degrees.
+
+---
+
+### `get_average_brightness(image)`
+**Purpose**:  
+Calculates the average brightness of the image.
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+
+**Outputs**:  
+- An integer representing the average brightness.
+
+---
+
+### `adjust_brightness(image, intensity)`
+**Purpose**:  
+Adjusts the brightness of the image by the given intensity.
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+- `intensity` (int): The adjustment value (positive or negative).
+
+**Outputs**:  
+- A new `RGBImage` with adjusted brightness.
+
+---
+
+### `blur(image)`
+**Purpose**:  
+Applies a blur effect to the image.
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+
+**Outputs**:  
+- A new `RGBImage` with a blur effect applied.
+
+---
+
+## Class `ImageKNNClassifier`
+
+### `__init__(k_neighbors)`
+**Purpose**:  
+Initializes a KNN classifier with a specified number of neighbors.
+
+**Inputs**:  
+- `k_neighbors` (int): The number of neighbors for classification.
+
+---
+
+### `fit(data)`
+**Purpose**:  
+Stores training data for the classifier.
+
+**Inputs**:  
+- `data` (list): A list of tuples `(image, label)`.
+
+**Exceptions Raised**:  
+- `ValueError`: If the number of training samples is less than `k_neighbors`.
+
+---
+
+### `distance(image1, image2)`
+**Purpose**:  
+Calculates the Euclidean distance between two images.
+
+**Inputs**:  
+- `image1` (`RGBImage`): The first image.
+- `image2` (`RGBImage`): The second image.
+
+**Outputs**:  
+- A float representing the Euclidean distance.
+
+**Exceptions Raised**:  
+- `TypeError`: If either input is not an `RGBImage`.
+- `ValueError`: If the image dimensions do not match.
+
+---
+
+### `vote(candidates)`
+**Purpose**:  
+Determines the most frequent label among the given candidates.
+
+**Inputs**:  
+- `candidates` (list): A list of labels.
+
+**Outputs**:  
+- The label with the highest frequency.
+
+---
+
+### `predict(image)`
+**Purpose**:  
+Predicts the label of the given image based on the k-nearest neighbors.
+
+**Inputs**:  
+- `image` (`RGBImage`): The input image.
+
+**Outputs**:  
+- The predicted label.
+
+**Exceptions Raised**:  
+- `ValueError`: If the classifier has not been trained.
+
+---
 
 ### Prerequisites
 - Python 3.x
 - Required Libraries: `numpy`, `PIL`, `os`
-# ImageKNNClassifier
-
-## Overview
-A simple K-Nearest Neighbors (KNN) classifier for image data, supporting Euclidean distance-based classification.
-
----
-
 
 ## **Installation**
 Clone the repository and ensure you have the following dependencies installed:
