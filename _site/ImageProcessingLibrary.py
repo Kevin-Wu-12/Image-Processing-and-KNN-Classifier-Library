@@ -1,8 +1,3 @@
-"""
-DSC 20 Project
-Name(s): Nathan Dang, Kevin Wu
-"""
-
 import numpy as np
 import os
 from PIL import Image
@@ -38,7 +33,6 @@ def img_save_helper(path, image):
 
 # --------------------------------------------------------------------------- #
 
-# Part 1: RGB Image #
 class RGBImage:
     """
     Represents an image in RGB format
@@ -56,7 +50,7 @@ class RGBImage:
         >>> RGBImage(pixels)
         Traceback (most recent call last):
         ...
-        TypeError
+        TypeError: Not a rectangular 3D list
 
         # Test instance variables
         >>> pixels = [
@@ -72,7 +66,7 @@ class RGBImage:
         >>> RGBImage([[[255, 255, 256], [0, 0, 0]]])
         Traceback (most recent call last):
         ...
-        ValueError:s Pixel values must be in the range 0-255
+        ValueError: Pixel values must be in the range 0-255
         """
         
         if not isinstance(pixels, list) or not pixels:
@@ -82,7 +76,7 @@ class RGBImage:
 
         for row in pixels:
             if not isinstance(row, list) or not row:
-                raise TypeError()
+                raise TypeError("Not a rectangular 3D list")
             for row in pixels:
                 for pixel in row:
                     if not all(0 <= val <= 255 for val in pixel):
@@ -105,6 +99,7 @@ class RGBImage:
         >>> img.size()
         (1, 2)
         """
+
         return (self.num_rows, self.num_cols)
 
     def get_pixels(self):
@@ -129,7 +124,6 @@ class RGBImage:
         True
         """
         
-        
         return [[[pix_val for pix_val in col] for col in row] \
                     for row in self.pixels]
 
@@ -148,6 +142,7 @@ class RGBImage:
         >>> id(img_copy) != id(img)
         True
         """
+
         return RGBImage(self.get_pixels())
 
     def get_pixel(self, row, col):
@@ -174,6 +169,7 @@ class RGBImage:
         >>> img.get_pixel(0, 0)
         (255, 255, 255)
         """
+
         if not isinstance(row, int) or not isinstance(col, int):
             raise TypeError()
         if not row < self.num_rows or not col < self.num_cols:
@@ -198,7 +194,7 @@ class RGBImage:
         >>> img.set_pixel(0, 0, (256, 0, 0))
         Traceback (most recent call last):
         ...
-        ValueError
+        ValueError: Color values exceed 255
 
         # Check that the R/G/B value with negative is unchanged
         >>> img.set_pixel(0, 0, (-1, 0, 0))
@@ -207,15 +203,14 @@ class RGBImage:
         >>> img.set_pixel(0, 1, (100, 200, -1))
         >>> img.pixels
         [[[255, 0, 0], [100, 200, 0]]]
-
         """
-        if not all(color <= 255 for color in new_color):
-            raise ValueError()
-        if not isinstance(row, int) or not isinstance(col, int):
-            raise TypeError()
-        if not row < self.num_rows or not col < self.num_cols:
-            raise ValueError()
 
+        if not all(color <= 255 for color in new_color):
+            raise ValueError('Color values exceed 255')
+        if not isinstance(row, int) or not isinstance(col, int):
+            raise TypeError('Row or col not an integer')
+        if not row < self.num_rows or not col < self.num_cols:
+            raise ValueError('Rows or cols out of range')
 
         colors = list(self.get_pixel(row, col))
         for index, color in enumerate(new_color):
@@ -225,9 +220,6 @@ class RGBImage:
                 colors[index] = color
         self.pixels[row][col] = colors
         
-
-
-# Part 2: Image Processing Template Methods #
 class ImageProcessingTemplate:
     """
     Contains assorted image processing methods
@@ -243,7 +235,7 @@ class ImageProcessingTemplate:
         >>> img_proc.cost
         0
         """
-        # YOUR CODE GOES HERE #
+        
         self.cost = 0
 
     def get_cost(self):
@@ -256,6 +248,7 @@ class ImageProcessingTemplate:
         >>> img_proc.get_cost()
         50
         """
+
         return self.cost
 
 
@@ -309,8 +302,8 @@ class ImageProcessingTemplate:
         >>> img_gray.pixels == img_exp.pixels # Check grayscale output
         True
         >>> img_save_helper('img/out/test_image_32x32_gray.png', img_gray)
-
         """
+
         gray = [[[sum(val)//3]*3 for val in vlist] for vlist in image.pixels]
 
         
@@ -330,6 +323,7 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/test_image_32x32_rotate.png', img_rotate)
         """
+
         rotate = [val[::-1] for val in image.pixels[::-1]]
 
         
@@ -348,8 +342,8 @@ class ImageProcessingTemplate:
         >>> img_proc = ImageProcessingTemplate()
         >>> img_proc.get_average_brightness(img)
         127
-
         """
+
         total_brightness = sum(
         sum(sum(pixel) // 3 for pixel in row) for row in image.pixels
         )
@@ -369,7 +363,6 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/test_image_32x32_adjusted.png', img_adjust)
         """
-        
 
         brightness = map(lambda x: [[val + intensity for val in vlst ]    
             for vlst in x], image.pixels) 
@@ -401,12 +394,12 @@ class ImageProcessingTemplate:
         rows = image.num_rows
         cols = image.num_cols
         blurred_pixels = [[[0, 0, 0] for i in range(cols)] for i in range(rows)]
+
         for row in range(rows):
             for col in range(cols):
                 pixels = image.pixels
                 total = [0,0,0]
                 count = 0
-
                 for row_dir in [-1, 0, 1]:
                     for col_dir in [-1, 0, 1]:
                         r, c = row + row_dir, col + col_dir
@@ -419,7 +412,6 @@ class ImageProcessingTemplate:
 
         return RGBImage(blurred_pixels)
 
-# Part 3: Standard Image Processing Methods #
 class StandardImageProcessing(ImageProcessingTemplate):
     """
     Represents a standard tier of an image processor
@@ -434,11 +426,10 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_proc.cost
         0
         """
-        # YOUR CODE GOES HERE #
+
         super().__init__()
         self.cost = 0
         self.coupon_total = 0
-        
 
     def negate(self, image):
         """
@@ -459,6 +450,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_negate.pixels == img_exp.pixels # Check negate output
         True
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -469,41 +461,47 @@ class StandardImageProcessing(ImageProcessingTemplate):
     def grayscale(self, image):
         """
         Returns a grayscale copy of the given image
-
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
         else:
             self.cost +=6
+
         return super().grayscale(image)
 
     def rotate_180(self, image):
         """
         Returns a rotated version of the given image
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
         else:
             self.cost += 10
+
         return super().rotate_180(image)
 
     def adjust_brightness(self, image, intensity):
         """
         Returns a new image with adjusted brightness level
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
         else:
             self.cost += 1
+
         return super().adjust_brightness(image, intensity)
 
     def blur(self, image):
         """
         Returns a new image with the pixels blurred
         """
+
         if self.coupon_total > 0:
             self.coupon_total -= 1
             self.cost +=0
@@ -525,6 +523,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_proc.get_cost()
         0
         """
+
         if not isinstance(amount, int):
             raise TypeError()
         elif amount <= 0:
@@ -533,7 +532,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         self.coupon_total += amount
 
 
-# Part 4: Premium Image Processing Methods #
 class PremiumImageProcessing(ImageProcessingTemplate):
     """
     Represents a paid tier of an image processor
@@ -547,10 +545,11 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         >>> img_proc = PremiumImageProcessing()
         >>> img_proc.get_cost()
         50
-
         """
+
         super().__init__()
         self.cost = 50
+
 
     def chroma_key(self, chroma_image, background_image, color):
         """
@@ -568,12 +567,13 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/square_32x32_chroma.png', img_chroma)
         """
+
         if not isinstance(chroma_image, RGBImage):
-            raise TypeError()
+            raise TypeError('chroma_image is not a RGBImage')
         if not isinstance(background_image, RGBImage):
-            raise TypeError()
+            raise TypeError('background_image is not a RGBImage')
         if chroma_image.size() != background_image.size():
-            raise ValueError()
+            raise ValueError('Dimensions do not match')
 
         background_pixels = background_image.pixels
         chroma_pixels = chroma_image.pixels
@@ -587,6 +587,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
                     chroma_pixels[row][col] = background_pixels[row][col]
 
         return RGBImage(chroma_pixels)
+
 
     def sticker(self, sticker_image, background_image, x_pos, y_pos):
         """
@@ -614,13 +615,14 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/test_image_32x32_sticker.png', img_combined)
         """
+
         rows = sticker_image.num_rows
         cols = sticker_image.num_cols
 
         if not isinstance(sticker_image, RGBImage):
-            raise TypeError()
+            raise TypeError('sticker_image is not a RGBImage')
         if not isinstance(background_image, RGBImage):
-            raise TypeError()
+            raise TypeError('background_image is not a RGBImage')
 
         if (
             rows > background_image.num_rows or 
@@ -629,19 +631,14 @@ class PremiumImageProcessing(ImageProcessingTemplate):
             raise ValueError()
 
         if not isinstance(x_pos, int):
-            raise TypeError()
+            raise TypeError('x_pos is not an integer')
         if not isinstance(y_pos, int):
-            raise TypeError()
-
-
+            raise TypeError('y+pos is not an integer')
         
         if cols + x_pos > background_image.num_cols or rows + y_pos > background_image.num_rows:
             raise ValueError()
 
-
-
         x, y = cols, rows
-
 
         for row in range(y):
             for col in range(x):
@@ -650,7 +647,6 @@ class PremiumImageProcessing(ImageProcessingTemplate):
                 background_image.pixels[actual_y][actual_x] = sticker_image.pixels[row][col]
 
         return RGBImage(background_image.pixels)
-
 
 
     def edge_highlight(self, image):
@@ -666,6 +662,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/test_image_32x32_edge.png', img_edge)
         """
+
         rows = image.num_rows
         cols = image.num_cols
 
@@ -704,26 +701,29 @@ class PremiumImageProcessing(ImageProcessingTemplate):
                 black_pixels[row][col] = [clamped_value] * 3
 
         return RGBImage(black_pixels)
-             
+  
 
-# Part 5: Image KNN Classifier #
 class ImageKNNClassifier:
     """
     Represents a simple KNNClassifier
     """
+
     def __init__(self, k_neighbors):
         """
         Creates a new KNN classifier object
         """
+
         self.k_neighbors = k_neighbors
+
 
     def fit(self, data):
         """
         Stores the given set of data and labels for later
         """
         if len(data) < self.k_neighbors:
-            raise ValueError()
+            raise ValueError('Length of data is less than k_neighbors')
         self.data = data
+
 
     def distance(self, image1, image2):
         """
@@ -739,8 +739,8 @@ class ImageKNNClassifier:
         Traceback (most recent call last):
         ...
         TypeError: Both inputs must be instances of RGBImage
-
         """
+
         if not isinstance(image1, RGBImage) or not isinstance(image2, RGBImage):
             raise TypeError("Both inputs must be instances of RGBImage")
 
@@ -773,6 +773,7 @@ class ImageKNNClassifier:
         >>> knn.vote(['aaaa', 'label2', 'label1'])
         'aaaa'
         """
+
         mostf = candidates[0]
         count = 0
         for label in candidates:
@@ -794,11 +795,9 @@ class ImageKNNClassifier:
         try:
             self.data
         except NameError:
-            raise ValueError()
+            raise ValueError('Classifier has not been trained')
 
         diff_calculated = [[self.distance(image, x[0])] + [x[1]] for x in self.data]
-        
-
 
         sorted_diff = sorted([(item[0], item[1]) for item in diff_calculated])[:self.k_neighbors]
 
@@ -812,12 +811,13 @@ def knn_tests(test_img_path):
 
     >>> knn_tests('img/knn_test_img.png')
     'nighttime'
-
     """
+
     # Read all of the sub-folder names in the knn_data folder
     # These will be treated as labels
     path = 'knn_data'
     data = []
+
     for label in os.listdir(path):
         label_path = os.path.join(path, label)
         # Ignore non-folder items
@@ -841,4 +841,5 @@ def knn_tests(test_img_path):
 
     # Return the KNN's prediction
     predicted_label = knn.predict(test_img)
+
     return predicted_label

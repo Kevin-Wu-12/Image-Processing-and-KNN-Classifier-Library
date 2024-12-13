@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=3bdbbf6d776b832bf4d887dc7bef05909a28f99f">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=4b5e759c8d0786751d31d5ddf503ce1c4c177d94">
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Image-Processing-and-KNN-Classifier-Library | A Python library for image processing and classification, featuring customizable image manipulations (grayscale, negation, edge detection) and a K-Nearest Neighbors (KNN) classifier for image recognition. Built using NumPy, PIL, and custom algorithms.</title>
@@ -70,6 +70,14 @@
   <li><a href="#running-tests">Running Tests</a></li>
   <li><a href="#contributions">Contributions</a></li>
   <li><a href="#disclaimer">Disclaimer</a></li>
+  <li><a href="#project-documentation">Documentation</a>
+    <ul>
+      <li><a href="#image-reader">Image Helpers</a></li>
+      <li><a href="#class-rgbimage">Class <code class="language-plaintext highlighter-rouge">RGBImage</code></a></li>
+      <li><a href="#class-standardimageprocessing">Class <code class="language-plaintext highlighter-rouge">StandardImageProcessing</code></a></li>
+      <li><a href="#class-premiumimageprocessing">Class <code class="language-plaintext highlighter-rouge">PremiumImageProcessing</code></a></li>
+    </ul>
+  </li>
 </ol>
 
 <h2 id="overview"><strong>Overview</strong></h2>
@@ -86,25 +94,46 @@
 <p>The <code class="language-plaintext highlighter-rouge">image_viewer.py</code> file was provided as part of the starter code for this project. It is used for testing and demonstrating the functionality of the implemented library but was not
 written by me.</p>
 
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+  <li>Python 3.x</li>
+  <li>Required Libraries: <code class="language-plaintext highlighter-rouge">numpy</code>, <code class="language-plaintext highlighter-rouge">PIL</code>, <code class="language-plaintext highlighter-rouge">os</code></li>
+</ul>
+
+<h2 id="installation"><strong>Installation</strong></h2>
+<p>Clone the repository and ensure you have the following dependencies installed:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://kevin-wu-12.github.io/Image-Processing-and-KNN-Classifier-Library/
+<span class="nb">cd </span>Image-Processing-and-KNN-Classifier-Library
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
 <h2 id="running-tests">Running Tests</h2>
 <p>This project uses doctests for validating functionality. To run the doctests:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> doctest <span class="nt">-v</span> ImageProcessingLibrary.py
 </code></pre></div></div>
-<h1 id="image-processing-and-knn-classifier-library"><strong>Image Processing and KNN Classifier Library</strong></h1>
-
-<h2 id="overview-1"><strong>Overview</strong></h2>
-<p>This Python library provides a modular framework for advanced image processing and classification using a K-Nearest Neighbors (KNN) approach. It includes classes and methods for manipulating RGB images, implementing standard and premium image processing techniques, and classifying images based on pixel similarity.</p>
 
 <h3 id="disclaimer">Disclaimer</h3>
 <p>This library is a personal implementation primarily built using native Python. While it emphasizes simplicity, clarity, and educational value, it may not be as optimized or fast as other specialized libraries like OpenCV or scikit-image. It is best suited for learning purposes or smaller-scale applications.</p>
 
-<h1 id="dsc-20-project-documentation">DSC 20 Project Documentation</h1>
+<h2 id="examples">Examples</h2>
 
-<h2 id="project-overview">Project Overview</h2>
-<p>This project implements an image processing library and a K-Nearest Neighbors (KNN) classifier for images. It provides the ability to manipulate and classify images based on various operations and techniques.</p>
+<p>Explore the following example scripts to see the library in action:</p>
 
-<hr />
+<ol>
+  <li><a href="examples/grayscale_example.py">Grayscale Example</a>: Convert an image to grayscale.</li>
+  <li><a href="examples/knn_classifier_example.py">KNN Classifier Example</a>: Classify images using K-Nearest Neighbors.</li>
+</ol>
+
+<h3 id="sample-images">Sample Images</h3>
+<p>To use these examples, download the repository and navigate to the <code class="language-plaintext highlighter-rouge">sample_images/</code> folder for input images.</p>
+
+<h3 id="run-an-example">Run an Example</h3>
+<p>Run the examples by navigating to the <code class="language-plaintext highlighter-rouge">examples/</code> folder and executing the script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python grayscale_example.py
+</code></pre></div></div>
+<h1 id="project-documentation">Project Documentation</h1>
 
 <h2 id="features">Features</h2>
 
@@ -119,6 +148,7 @@ written by me.</p>
           <li><code class="language-plaintext highlighter-rouge">get_pixel()</code>: Retrieve the RGB value of a specific pixel.</li>
           <li><code class="language-plaintext highlighter-rouge">set_pixel()</code>: Modify the RGB value of a pixel.</li>
           <li><code class="language-plaintext highlighter-rouge">size()</code>: Returns the dimensions of the image.</li>
+          <li><code class="language-plaintext highlighter-rouge">copy()</code>’: Returns a copy of this RGBImage object</li>
         </ul>
       </li>
     </ul>
@@ -134,7 +164,7 @@ written by me.</p>
           <li><code class="language-plaintext highlighter-rouge">negate</code>: Replace specific colors with a background.</li>
           <li><code class="language-plaintext highlighter-rouge">grayscale</code>: Overlay one image on another at specified positions.</li>
           <li><code class="language-plaintext highlighter-rouge">rotate_180</code>: Highlight edges in an image.</li>
-          <li><code class="language-plaintext highlighter-rouge">adjust_brightness</code>: Highlight edges in an image.</li>
+          <li><code class="language-plaintext highlighter-rouge">adjust_brightness</code>: Adjust brightness of an image.</li>
           <li><code class="language-plaintext highlighter-rouge">blur</code>: Highlight edges in an image.</li>
         </ul>
       </li>
@@ -169,104 +199,495 @@ written by me.</p>
   </li>
 </ul>
 
-<h3 id="prerequisites">Prerequisites</h3>
+<h1 id="image-reader">Image Reader</h1>
+
+<h2 id="img_read_helperpath"><code class="language-plaintext highlighter-rouge">img_read_helper(path)</code></h2>
+<p><strong>Purpose</strong>:<br />
+Reads an image file from the given path, converts it into an RGB format, and creates an <code class="language-plaintext highlighter-rouge">RGBImage</code> object.</p>
+
+<p><strong>Inputs</strong>:</p>
 <ul>
-  <li>Python 3.x</li>
-  <li>Required Libraries: <code class="language-plaintext highlighter-rouge">numpy</code>, <code class="language-plaintext highlighter-rouge">PIL</code>, <code class="language-plaintext highlighter-rouge">os</code>
-    <h1 id="imageknnclassifier">ImageKNNClassifier</h1>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (str): The file path to the image.</li>
 </ul>
 
-<h2 id="overview-2">Overview</h2>
-<p>A simple K-Nearest Neighbors (KNN) classifier for image data, supporting Euclidean distance-based classification.</p>
-
-<hr />
-
-<h2 id="key-methods">Key Methods</h2>
-
-<h3 id="__init__self-k_neighbors"><code class="language-plaintext highlighter-rouge">__init__(self, k_neighbors)</code></h3>
-<p>Initializes the classifier.</p>
-
+<p><strong>Outputs</strong>:</p>
 <ul>
-  <li><strong>Parameters</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">k_neighbors</code> (int): Number of neighbors to consider for classification.</li>
-    </ul>
-  </li>
+  <li>An instance of <code class="language-plaintext highlighter-rouge">RGBImage</code> created from the image.</li>
 </ul>
 
-<hr />
-
-<h3 id="fitself-data"><code class="language-plaintext highlighter-rouge">fit(self, data)</code></h3>
-<p>Trains the classifier using labeled image data.</p>
-
+<p><strong>Exceptions Raised</strong>:</p>
 <ul>
-  <li><strong>Parameters</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">data</code> (list of tuples): Each tuple contains an <code class="language-plaintext highlighter-rouge">RGBImage</code> instance and its associated label.</li>
-    </ul>
-  </li>
-  <li><strong>Raises</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the dataset has fewer elements than <code class="language-plaintext highlighter-rouge">k_neighbors</code>.</li>
-    </ul>
-  </li>
+  <li>Exceptions related to invalid file paths or unreadable image files.</li>
+</ul>
+
+<p><strong>Remarks</strong>:</p>
+<ul>
+  <li>The image is always converted to RGB format regardless of its original mode.</li>
 </ul>
 
 <hr />
 
-<h3 id="predictself-image"><code class="language-plaintext highlighter-rouge">predict(self, image)</code></h3>
-<p>Predicts the label of an input image based on its nearest neighbors.</p>
+<h2 id="img_save_helperpath-image"><code class="language-plaintext highlighter-rouge">img_save_helper(path, image)</code></h2>
+<p><strong>Purpose</strong>:<br />
+Saves an <code class="language-plaintext highlighter-rouge">RGBImage</code> instance as an image file at the specified path.</p>
 
+<p><strong>Inputs</strong>:</p>
 <ul>
-  <li><strong>Parameters</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The image to classify.</li>
-    </ul>
-  </li>
-  <li><strong>Returns</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">str</code>: Predicted label.</li>
-    </ul>
-  </li>
-  <li><strong>Raises</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the classifier has not been trained.</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (str): The file path where the image will be saved.</li>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): An instance of the <code class="language-plaintext highlighter-rouge">RGBImage</code> class to save.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li>None.</li>
 </ul>
 
 <hr />
 
-<h3 id="distanceself-image1-image2"><code class="language-plaintext highlighter-rouge">distance(self, image1, image2)</code></h3>
-<p>Calculates the Euclidean distance between two images.</p>
+<h1 id="class-rgbimage">Class <code class="language-plaintext highlighter-rouge">RGBImage</code></h1>
 
+<h3 id="__init__pixels"><code class="language-plaintext highlighter-rouge">__init__(pixels)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Initializes an <code class="language-plaintext highlighter-rouge">RGBImage</code> instance with a 3D list of pixel values.</p>
+
+<p><strong>Inputs</strong>:</p>
 <ul>
-  <li><strong>Parameters</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">image1</code>, <code class="language-plaintext highlighter-rouge">image2</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The two images to compare.</li>
-    </ul>
-  </li>
-  <li><strong>Returns</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">float</code>: The computed Euclidean distance.</li>
-    </ul>
-  </li>
-  <li><strong>Raises</strong>:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">TypeError</code>: If inputs are not <code class="language-plaintext highlighter-rouge">RGBImage</code> instances.</li>
-      <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the dimensions of the two images do not match.</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">pixels</code> (list): A 3D list where each element represents the RGB values of a pixel.</li>
 </ul>
 
-<h2 id="installation"><strong>Installation</strong></h2>
-<p>Clone the repository and ensure you have the following dependencies installed:
-```bash
-git clone https://kevin-wu-12.github.io/Image-Processing-and-KNN-Classifier-Library/
-cd Image-Processing-and-KNN-Classifier-Library
-pip install -r requirements.txt</p>
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
 
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TypeError</code>: If the input is not a rectangular 3D list.</li>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If pixel values are not integers in the range [0, 255].</li>
+</ul>
+
+<hr />
+
+<h3 id="size"><code class="language-plaintext highlighter-rouge">size()</code></h3>
+<p><strong>Purpose</strong>:<br />
+Returns the dimensions of the image.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A tuple <code class="language-plaintext highlighter-rouge">(num_rows, num_cols)</code> representing the number of rows and columns in the image.</li>
+</ul>
+
+<hr />
+
+<h3 id="get_pixels"><code class="language-plaintext highlighter-rouge">get_pixels()</code></h3>
+<p><strong>Purpose</strong>:<br />
+Returns a deep copy of the image’s pixel data.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A 3D list of the image’s pixel data.</li>
+</ul>
+
+<hr />
+
+<h3 id="copy"><code class="language-plaintext highlighter-rouge">copy()</code></h3>
+<p><strong>Purpose</strong>:<br />
+Returns a copy of the <code class="language-plaintext highlighter-rouge">RGBImage</code> instance</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A <code class="language-plaintext highlighter-rouge">RGBImage</code> instance</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<hr />
+
+<h3 id="get_pixel"><code class="language-plaintext highlighter-rouge">get_pixel()</code></h3>
+<p><strong>Purpose</strong>:<br />
+Returns the (R, G, B) value at the given positio</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A 3D list of the image’s pixel data.</li>
+</ul>
+
+<hr />
+
+<h3 id="set_pixelrow-col-new_color"><code class="language-plaintext highlighter-rouge">set_pixel(row, col, new_color)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Updates the RGB value of a specific pixel.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">row</code> (int): The row index.</li>
+  <li><code class="language-plaintext highlighter-rouge">col</code> (int): The column index.</li>
+  <li><code class="language-plaintext highlighter-rouge">new_color</code> (tuple): A tuple <code class="language-plaintext highlighter-rouge">(R, G, B)</code> with the new pixel values. Negative values are ignored.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TypeError</code>: If <code class="language-plaintext highlighter-rouge">row</code> or <code class="language-plaintext highlighter-rouge">col</code> is not an integer.</li>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the RGB values in <code class="language-plaintext highlighter-rouge">new_color</code> exceed the range [0, 255].</li>
+</ul>
+
+<hr />
+
+<h1 id="class-standardimageprocessing">Class <code class="language-plaintext highlighter-rouge">StandardImageProcessing</code></h1>
+
+<h3 id="__init__"><code class="language-plaintext highlighter-rouge">__init__()</code></h3>
+<p><strong>Purpose</strong>:<br />
+Initializes an <code class="language-plaintext highlighter-rouge">ImageProcessingTemplate</code> instance with the cost and coupon total of 0</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<hr />
+
+<h3 id="negateimage"><code class="language-plaintext highlighter-rouge">negate(image)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Creates a new image with the RGB values negated (inverted).</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> with negated pixel values.</li>
+</ul>
+
+<hr />
+
+<h3 id="grayscaleimage"><code class="language-plaintext highlighter-rouge">grayscale(image)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Creates a grayscale version of the given image.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> in grayscale.</li>
+</ul>
+
+<hr />
+
+<h3 id="rotate_180image"><code class="language-plaintext highlighter-rouge">rotate_180(image)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Creates a new image rotated 180 degrees.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> rotated by 180 degrees.</li>
+</ul>
+
+<hr />
+
+<h3 id="get_average_brightnessimage"><code class="language-plaintext highlighter-rouge">get_average_brightness(image)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Calculates the average brightness of the image.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>An integer representing the average brightness.</li>
+</ul>
+
+<hr />
+
+<h3 id="adjust_brightnessimage-intensity"><code class="language-plaintext highlighter-rouge">adjust_brightness(image, intensity)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Adjusts the brightness of the image by the given intensity.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+  <li><code class="language-plaintext highlighter-rouge">intensity</code> (int): The adjustment value (positive or negative).</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> with adjusted brightness.</li>
+</ul>
+
+<hr />
+
+<h3 id="blurimage"><code class="language-plaintext highlighter-rouge">blur(image)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Applies a blur effect to the image.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> with a blur effect applied.</li>
+</ul>
+
+<hr />
+
+<h1 id="class-premiumimageprocessing">Class <code class="language-plaintext highlighter-rouge">PremiumImageProcessing</code></h1>
+
+<p>Represents a paid tier of an image processor, extending the <code class="language-plaintext highlighter-rouge">ImageProcessingTemplate</code> class.</p>
+
+<h3 id="__init__-1"><code class="language-plaintext highlighter-rouge">__init__()</code></h3>
+<p><strong>Purpose</strong>:<br />
+Initializes a <code class="language-plaintext highlighter-rouge">PremiumImageProcessing</code> object with an initial cost of 50.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<hr />
+
+<h2 id="chroma_keychroma_image-background_image-color"><code class="language-plaintext highlighter-rouge">chroma_key(chroma_image, background_image, color)</code></h2>
+
+<p><strong>Purpose:</strong><br />
+Replaces all pixels in the <code class="language-plaintext highlighter-rouge">chroma_image</code> that match the specified <code class="language-plaintext highlighter-rouge">color</code> with corresponding pixels from the <code class="language-plaintext highlighter-rouge">background_image</code>.</p>
+
+<p><strong>Inputs:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">chroma_image (RGBImage)</code>: The image with the chroma key to be replaced.</li>
+  <li><code class="language-plaintext highlighter-rouge">background_image (RGBImage)</code>: The background image used for replacement.</li>
+  <li><code class="language-plaintext highlighter-rouge">color (tuple)</code>: A tuple <code class="language-plaintext highlighter-rouge">(R, G, B)</code> representing the chroma key color.</li>
+</ul>
+
+<p><strong>Outputs:</strong></p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> with the chroma key applied.</li>
+</ul>
+
+<p><strong>Exceptions Raised:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TypeError</code>: If <code class="language-plaintext highlighter-rouge">chroma_image</code> or <code class="language-plaintext highlighter-rouge">background_image</code> is not an <code class="language-plaintext highlighter-rouge">RGBImage</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the dimensions of <code class="language-plaintext highlighter-rouge">chroma_image</code> and <code class="language-plaintext highlighter-rouge">background_image</code> do not match.</li>
+</ul>
+
+<hr />
+
+<h2 id="stickersticker_image-background_image-x_pos-y_pos"><code class="language-plaintext highlighter-rouge">sticker(sticker_image, background_image, x_pos, y_pos)</code></h2>
+
+<p><strong>Purpose:</strong><br />
+Places the <code class="language-plaintext highlighter-rouge">sticker_image</code> on top of the <code class="language-plaintext highlighter-rouge">background_image</code> at the specified position (<code class="language-plaintext highlighter-rouge">x_pos</code>, <code class="language-plaintext highlighter-rouge">y_pos</code>).</p>
+
+<p><strong>Inputs:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sticker_image (RGBImage)</code>: The image to place as a sticker.</li>
+  <li><code class="language-plaintext highlighter-rouge">background_image (RGBImage)</code>: The background image.</li>
+  <li><code class="language-plaintext highlighter-rouge">x_pos (int)</code>: The x-coordinate of the sticker’s top-left corner.</li>
+  <li><code class="language-plaintext highlighter-rouge">y_pos (int)</code>: The y-coordinate of the sticker’s top-left corner.</li>
+</ul>
+
+<p><strong>Outputs:</strong></p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> with the sticker applied.</li>
+</ul>
+
+<p><strong>Exceptions Raised:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TypeError</code>: If <code class="language-plaintext highlighter-rouge">sticker_image</code> or <code class="language-plaintext highlighter-rouge">background_image</code> is not an <code class="language-plaintext highlighter-rouge">RGBImage</code>, or if <code class="language-plaintext highlighter-rouge">x_pos</code> or <code class="language-plaintext highlighter-rouge">y_pos</code> is not an integer.</li>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the sticker goes out of bounds of the background image.</li>
+</ul>
+
+<hr />
+
+<h2 id="edge_highlightimage"><code class="language-plaintext highlighter-rouge">edge_highlight(image)</code></h2>
+
+<p><strong>Purpose:</strong><br />
+Highlights the edges in the image using an edge detection kernel.</p>
+
+<p><strong>Inputs:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image (RGBImage)</code>: The input image.</li>
+</ul>
+
+<p><strong>Outputs:</strong></p>
+<ul>
+  <li>A new <code class="language-plaintext highlighter-rouge">RGBImage</code> with highlighted edges.</li>
+</ul>
+
+<p><strong>Exceptions Raised:</strong></p>
+<ul>
+  <li>None.</li>
+</ul>
+
+<hr />
+
+<h2 id="class-imageknnclassifier">Class <code class="language-plaintext highlighter-rouge">ImageKNNClassifier</code></h2>
+
+<h3 id="__init__k_neighbors"><code class="language-plaintext highlighter-rouge">__init__(k_neighbors)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Initializes a KNN classifier with a specified number of neighbors.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">k_neighbors</code> (int): The number of neighbors for classification.</li>
+</ul>
+
+<hr />
+
+<h3 id="fitdata"><code class="language-plaintext highlighter-rouge">fit(data)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Stores training data for the classifier.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">data</code> (list): A list of tuples <code class="language-plaintext highlighter-rouge">(image, label)</code>.</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the number of training samples is less than <code class="language-plaintext highlighter-rouge">k_neighbors</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="distanceimage1-image2"><code class="language-plaintext highlighter-rouge">distance(image1, image2)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Calculates the Euclidean distance between two images.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image1</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The first image.</li>
+  <li><code class="language-plaintext highlighter-rouge">image2</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The second image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>A float representing the Euclidean distance.</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TypeError</code>: If either input is not an <code class="language-plaintext highlighter-rouge">RGBImage</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the image dimensions do not match.</li>
+</ul>
+
+<hr />
+
+<h3 id="votecandidates"><code class="language-plaintext highlighter-rouge">vote(candidates)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Determines the most frequent label among the given candidates.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">candidates</code> (list): A list of labels.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>The label with the highest frequency.</li>
+</ul>
+
+<hr />
+
+<h3 id="predictimage"><code class="language-plaintext highlighter-rouge">predict(image)</code></h3>
+<p><strong>Purpose</strong>:<br />
+Predicts the label of the given image based on the k-nearest neighbors.</p>
+
+<p><strong>Inputs</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">image</code> (<code class="language-plaintext highlighter-rouge">RGBImage</code>): The input image.</li>
+</ul>
+
+<p><strong>Outputs</strong>:</p>
+<ul>
+  <li>The predicted label.</li>
+</ul>
+
+<p><strong>Exceptions Raised</strong>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the classifier has not been trained.</li>
+</ul>
+
+<hr />
+
+<h2 id="knn_teststest_img_path"><code class="language-plaintext highlighter-rouge">knn_tests(test_img_path)</code></h2>
+
+<p><strong>Purpose:</strong><br />
+Runs K-Nearest Neighbors (KNN) classification on an image, predicting its label based on a dataset of labeled images.</p>
+
+<p><strong>Inputs:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">test_img_path (str)</code>: The file path of the test image to classify.</li>
+</ul>
+
+<p><strong>Outputs:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">str</code>: The predicted label for the test image.</li>
+</ul>
+
+<p><strong>Exceptions Raised:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FileNotFoundError</code>: If the provided <code class="language-plaintext highlighter-rouge">test_img_path</code> does not exist or cannot be read.</li>
+  <li><code class="language-plaintext highlighter-rouge">ValueError</code>: If the dataset folder (<code class="language-plaintext highlighter-rouge">knn_data</code>) is empty or improperly structured.</li>
+</ul>
 
       </section>
     </div>
