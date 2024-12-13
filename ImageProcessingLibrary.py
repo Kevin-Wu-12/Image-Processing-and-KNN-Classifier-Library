@@ -33,7 +33,6 @@ def img_save_helper(path, image):
 
 # --------------------------------------------------------------------------- #
 
-# Part 1: RGB Image #
 class RGBImage:
     """
     Represents an image in RGB format
@@ -221,9 +220,6 @@ class RGBImage:
                 colors[index] = color
         self.pixels[row][col] = colors
         
-
-
-# Part 2: Image Processing Template Methods #
 class ImageProcessingTemplate:
     """
     Contains assorted image processing methods
@@ -416,7 +412,6 @@ class ImageProcessingTemplate:
 
         return RGBImage(blurred_pixels)
 
-# Part 3: Standard Image Processing Methods #
 class StandardImageProcessing(ImageProcessingTemplate):
     """
     Represents a standard tier of an image processor
@@ -537,7 +532,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         self.coupon_total += amount
 
 
-# Part 4: Premium Image Processing Methods #
 class PremiumImageProcessing(ImageProcessingTemplate):
     """
     Represents a paid tier of an image processor
@@ -555,6 +549,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
 
         super().__init__()
         self.cost = 50
+
 
     def chroma_key(self, chroma_image, background_image, color):
         """
@@ -592,6 +587,7 @@ class PremiumImageProcessing(ImageProcessingTemplate):
                     chroma_pixels[row][col] = background_pixels[row][col]
 
         return RGBImage(chroma_pixels)
+
 
     def sticker(self, sticker_image, background_image, x_pos, y_pos):
         """
@@ -653,7 +649,6 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         return RGBImage(background_image.pixels)
 
 
-
     def edge_highlight(self, image):
         """
         Returns a new image with the edges highlighted
@@ -706,9 +701,8 @@ class PremiumImageProcessing(ImageProcessingTemplate):
                 black_pixels[row][col] = [clamped_value] * 3
 
         return RGBImage(black_pixels)
-             
+  
 
-# Part 5: Image KNN Classifier #
 class ImageKNNClassifier:
     """
     Represents a simple KNNClassifier
@@ -718,7 +712,9 @@ class ImageKNNClassifier:
         """
         Creates a new KNN classifier object
         """
+
         self.k_neighbors = k_neighbors
+
 
     def fit(self, data):
         """
@@ -727,6 +723,7 @@ class ImageKNNClassifier:
         if len(data) < self.k_neighbors:
             raise ValueError('Length of data is less than k_neighbors')
         self.data = data
+
 
     def distance(self, image1, image2):
         """
@@ -801,8 +798,6 @@ class ImageKNNClassifier:
             raise ValueError('Classifier has not been trained')
 
         diff_calculated = [[self.distance(image, x[0])] + [x[1]] for x in self.data]
-        
-
 
         sorted_diff = sorted([(item[0], item[1]) for item in diff_calculated])[:self.k_neighbors]
 
@@ -816,13 +811,13 @@ def knn_tests(test_img_path):
 
     >>> knn_tests('img/knn_test_img.png')
     'nighttime'
-
     """
 
     # Read all of the sub-folder names in the knn_data folder
     # These will be treated as labels
     path = 'knn_data'
     data = []
+
     for label in os.listdir(path):
         label_path = os.path.join(path, label)
         # Ignore non-folder items
