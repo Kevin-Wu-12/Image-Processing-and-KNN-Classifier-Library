@@ -1,8 +1,3 @@
-"""
-DSC 20 Project
-Name(s): Nathan Dang, Kevin Wu
-"""
-
 import numpy as np
 import os
 from PIL import Image
@@ -218,7 +213,6 @@ class RGBImage:
         if not row < self.num_rows or not col < self.num_cols:
             raise ValueError('Rows or cols out of range')
 
-
         colors = list(self.get_pixel(row, col))
         for index, color in enumerate(new_color):
             if color < 0:
@@ -404,12 +398,12 @@ class ImageProcessingTemplate:
         rows = image.num_rows
         cols = image.num_cols
         blurred_pixels = [[[0, 0, 0] for i in range(cols)] for i in range(rows)]
+
         for row in range(rows):
             for col in range(cols):
                 pixels = image.pixels
                 total = [0,0,0]
                 count = 0
-
                 for row_dir in [-1, 0, 1]:
                     for col_dir in [-1, 0, 1]:
                         r, c = row + row_dir, col + col_dir
@@ -437,7 +431,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_proc.cost
         0
         """
-        # YOUR CODE GOES HERE #
+
         super().__init__()
         self.cost = 0
         self.coupon_total = 0
@@ -479,6 +473,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
             self.cost +=0
         else:
             self.cost +=6
+
         return super().grayscale(image)
 
     def rotate_180(self, image):
@@ -491,6 +486,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
             self.cost +=0
         else:
             self.cost += 10
+
         return super().rotate_180(image)
 
     def adjust_brightness(self, image, intensity):
@@ -503,6 +499,7 @@ class StandardImageProcessing(ImageProcessingTemplate):
             self.cost +=0
         else:
             self.cost += 1
+
         return super().adjust_brightness(image, intensity)
 
     def blur(self, image):
@@ -577,11 +574,11 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         """
 
         if not isinstance(chroma_image, RGBImage):
-            raise TypeError()
+            raise TypeError('chroma_image is not a RGBImage')
         if not isinstance(background_image, RGBImage):
-            raise TypeError()
+            raise TypeError('background_image is not a RGBImage')
         if chroma_image.size() != background_image.size():
-            raise ValueError()
+            raise ValueError('Dimensions do not match')
 
         background_pixels = background_image.pixels
         chroma_pixels = chroma_image.pixels
@@ -627,9 +624,9 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         cols = sticker_image.num_cols
 
         if not isinstance(sticker_image, RGBImage):
-            raise TypeError()
+            raise TypeError('sticker_image is not a RGBImage')
         if not isinstance(background_image, RGBImage):
-            raise TypeError()
+            raise TypeError('background_image is not a RGBImage')
 
         if (
             rows > background_image.num_rows or 
@@ -638,19 +635,14 @@ class PremiumImageProcessing(ImageProcessingTemplate):
             raise ValueError()
 
         if not isinstance(x_pos, int):
-            raise TypeError()
+            raise TypeError('x_pos is not an integer')
         if not isinstance(y_pos, int):
-            raise TypeError()
-
-
+            raise TypeError('y+pos is not an integer')
         
         if cols + x_pos > background_image.num_cols or rows + y_pos > background_image.num_rows:
             raise ValueError()
 
-
-
         x, y = cols, rows
-
 
         for row in range(y):
             for col in range(x):
@@ -733,7 +725,7 @@ class ImageKNNClassifier:
         Stores the given set of data and labels for later
         """
         if len(data) < self.k_neighbors:
-            raise ValueError()
+            raise ValueError('Length of data is less than k_neighbors')
         self.data = data
 
     def distance(self, image1, image2):
@@ -806,7 +798,7 @@ class ImageKNNClassifier:
         try:
             self.data
         except NameError:
-            raise ValueError()
+            raise ValueError('Classifier has not been trained')
 
         diff_calculated = [[self.distance(image, x[0])] + [x[1]] for x in self.data]
         
