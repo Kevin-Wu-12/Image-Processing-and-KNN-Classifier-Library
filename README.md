@@ -72,7 +72,7 @@ This library is a personal implementation primarily built using native Python. W
     - `predict()`: Classify an image based on its nearest neighbors.
     - `distance()`: Compute the Euclidean distance between two images.
     
-# Documentation for Image Processing and KNN Classifier
+# Documentation for Standard/Premium Image Processing and KNN Classifier
 
 ## `img_read_helper(path)`
 **Purpose**:  
@@ -195,29 +195,17 @@ Updates the RGB value of a specific pixel.
 
 ---
 
-## Class `ImageProcessingTemplate`
+## Class `StandardImageProcessing`
 
 ### `__init__()`
 **Purpose**:  
-Initializes an `ImageProcessingTemplate` instance with the cost of 0.
+Initializes an `ImageProcessingTemplate` instance with the cost and coupon total of 0
 
 **Inputs**:  
 - None.
 
 **Outputs**:  
 - None.
-
----
-
-### `cost()`
-**Purpose**:  
-Returns the total cost.
-
-**Inputs**:  
-- None.
-
-**Outputs**:  
-- Current incurred cost.
 
 ---
 
@@ -291,6 +279,81 @@ Applies a blur effect to the image.
 
 **Outputs**:  
 - A new `RGBImage` with a blur effect applied.
+
+---
+
+## Class `PremiumImageProcessing`
+
+Represents a paid tier of an image processor, extending the `ImageProcessingTemplate` class.
+
+### `__init__()`
+**Purpose**:  
+Initializes a `PremiumImageProcessing` object with an initial cost of 50.
+
+**Inputs**:  
+- None.
+
+**Outputs**:  
+- None.
+
+**Exceptions Raised**:  
+- None.
+
+---
+
+## `chroma_key(chroma_image, background_image, color)`
+
+**Purpose:**  
+Replaces all pixels in the `chroma_image` that match the specified `color` with corresponding pixels from the `background_image`.
+
+**Inputs:**  
+- `chroma_image (RGBImage)`: The image with the chroma key to be replaced.  
+- `background_image (RGBImage)`: The background image used for replacement.  
+- `color (tuple)`: A tuple `(R, G, B)` representing the chroma key color.
+
+**Outputs:**  
+- A new `RGBImage` with the chroma key applied.
+
+**Exceptions Raised:**  
+- `TypeError`: If `chroma_image` or `background_image` is not an `RGBImage`.  
+- `ValueError`: If the dimensions of `chroma_image` and `background_image` do not match.
+
+---
+
+## `sticker(sticker_image, background_image, x_pos, y_pos)`
+
+**Purpose:**  
+Places the `sticker_image` on top of the `background_image` at the specified position (`x_pos`, `y_pos`).
+
+**Inputs:**  
+- `sticker_image (RGBImage)`: The image to place as a sticker.  
+- `background_image (RGBImage)`: The background image.  
+- `x_pos (int)`: The x-coordinate of the sticker's top-left corner.  
+- `y_pos (int)`: The y-coordinate of the sticker's top-left corner.
+
+**Outputs:**  
+- A new `RGBImage` with the sticker applied.
+
+**Exceptions Raised:**  
+- `TypeError`: If `sticker_image` or `background_image` is not an `RGBImage`, or if `x_pos` or `y_pos` is not an integer.  
+- `ValueError`: If the sticker goes out of bounds of the background image.
+
+---
+
+## `edge_highlight(image)`
+
+**Purpose:**  
+Highlights the edges in the image using an edge detection kernel.
+
+**Inputs:**  
+- `image (RGBImage)`: The input image.
+
+**Outputs:**  
+- A new `RGBImage` with highlighted edges.
+
+**Exceptions Raised:**  
+- None.
+
 
 ---
 
