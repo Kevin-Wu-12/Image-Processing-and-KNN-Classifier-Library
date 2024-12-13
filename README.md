@@ -11,6 +11,15 @@ A Python library for image processing and classification, built primarily with n
 4. [Running Tests](#running-tests)
 5. [Contributions](#contributions)
 6. [Disclaimer](#disclaimer)
+7. [Documentation](#project-documentation)
+   - [Image Helpers](#image-reader)
+   - [Class `RGBImage`](#class-rgbimage)
+   - [Class `StandardImageProcessing`](#class-standardimageprocessing)
+   - [Class `PremiumImageProcessing`](#class-premiumimageprocessing)
+
+
+
+
 
 ## **Overview**
 This Python library provides a modular framework for advanced image processing and classification using a K-Nearest Neighbors (KNN) approach. It includes classes and methods for manipulating RGB images, implementing standard and premium image processing techniques, and classifying images based on pixel similarity.
@@ -100,7 +109,7 @@ python grayscale_example.py
     - `predict()`: Classify an image based on its nearest neighbors.
     - `distance()`: Compute the Euclidean distance between two images.
     
-# Documentation for Standard/Premium Image Processing and KNN Classifier
+# Image Reader 
 
 ## `img_read_helper(path)`
 **Purpose**:  
@@ -136,7 +145,7 @@ Saves an `RGBImage` instance as an image file at the specified path.
 
 ---
 
-## Class `RGBImage`
+# Class `RGBImage`
 
 ### `__init__(pixels)`
 **Purpose**:  
@@ -223,7 +232,7 @@ Updates the RGB value of a specific pixel.
 
 ---
 
-## Class `StandardImageProcessing`
+# Class `StandardImageProcessing`
 
 ### `__init__()`
 **Purpose**:  
@@ -310,7 +319,7 @@ Applies a blur effect to the image.
 
 ---
 
-## Class `PremiumImageProcessing`
+# Class `PremiumImageProcessing`
 
 Represents a paid tier of an image processor, extending the `ImageProcessingTemplate` class.
 
