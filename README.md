@@ -424,6 +424,21 @@ Predicts the label of the given image based on the k-nearest neighbors.
 
 ---
 
+## `knn_tests(test_img_path)`
+
+**Purpose:**  
+Runs K-Nearest Neighbors (KNN) classification on an image, predicting its label based on a dataset of labeled images.
+
+**Inputs:**  
+- `test_img_path (str)`: The file path of the test image to classify.
+
+**Outputs:**  
+- `str`: The predicted label for the test image.
+
+**Exceptions Raised:**  
+- `FileNotFoundError`: If the provided `test_img_path` does not exist or cannot be read.  
+- `ValueError`: If the dataset folder (`knn_data`) is empty or improperly structured.
+
 ### Prerequisites
 - Python 3.x
 - Required Libraries: `numpy`, `PIL`, `os`
