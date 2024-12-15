@@ -1,3 +1,5 @@
+# Gemfile for local website
+
 GEM
   remote: https://rubygems.org/
   specs:
